@@ -13,7 +13,7 @@
         <tr>
           <td><%= revenue.source %></td>
           <td><%= revenue.amount %></td>
-          <td><%= link_to 'Remove Revenue', [revenue.event, revenue], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Remove Revenue', [@event, revenue], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>
