@@ -1,0 +1,26 @@
+<table class="table">
+  
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% if @event.expenses.any? %>
+      <% @event.expenses.persisted.each do |expense| %>
+      <tr>
+        <td><%= expense.source %></td>
+        <td><%= expense.amount %></td>
+        <td><%= link_to 'Remove Expense', [expense.event, expense], 
+                    method: :delete, 
+                    data: {confirm: 'Are you sure?'} %></td>
+                    
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+  
+</table>

@@ -1,0 +1,27 @@
+<%= form_for [@event, @revenue] do |f| %>
+  <% if @revenue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(revenue.errors.count, "error") %> prohibited this revenue from being saved:</h2>
+
+      <ul>
+      <% revenue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :source %>
+    <%= f.text_field :source, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :amount %>
+    <%= f.number_field :amount, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

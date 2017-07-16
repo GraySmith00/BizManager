@@ -1,0 +1,42 @@
+<h1><%= @event.name %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<p>
+  <strong>Promoter:</strong>
+  <%= @event.promoter %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @event.paid %>
+</p>
+
+<br><br>
+
+<h3>Revenues</h3>
+<%= render 'events/revenues/revenue' %>
+
+<br><br>
+
+<h3>Expenses</h3>
+<%= render 'events/expenses/expense' %>
+
+<br><br>
+
+<h4>Add Revenue</h4>
+<%= render 'events/revenues/form' %>
+
+<br>
+
+<h4>Add Expense</h4>
+<%= render 'events/expenses/form' %>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
