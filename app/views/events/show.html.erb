@@ -27,7 +27,16 @@
 <h3>Expenses</h3>
 <%= render 'events/expenses/expense' %>
 
-<br><br>
+<br>
+<hr>
+
+<% if (@revenue_running_total - @expense_running_total) >= 0 %>
+  <h4>Net Profit: <%= number_to_currency(@revenue_running_total - @expense_running_total) %></h4>
+<% else %>
+  <h4>Net Loss: <span class="net-loss"><%= number_to_currency(@revenue_running_total - @expense_running_total) %></span></h4>
+<% end %>
+<hr>
+<br>
 
 <h4>Add Revenue</h4>
 <%= render 'events/revenues/form' %>

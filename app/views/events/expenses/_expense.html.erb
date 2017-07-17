@@ -9,19 +9,25 @@
   </thead>
   
   <tbody>
+    <% @expense_running_total = 0 %>
     <% if @event.expenses.any? %>
       <% @event.expenses.persisted.each do |expense| %>
       <tr>
         <td><%= expense.source %></td>
-        <td><%= expense.amount %></td>
+        <td><%= number_to_currency(expense.amount) %></td>
         <td><%= link_to "Remove Expense", [@event, expense], 
                     method: :delete, 
                     class: 'btn btn-danger btn-sm',
                     data: {confirm: 'Are you sure?'} %></td>
                     
       </tr>
+      <% @expense_running_total = @expense_running_total + expense.amount %>
       <% end %>
     <% end %>
   </tbody>
   
 </table>
+
+<br>
+
+<h4>Expense Total: <%= number_to_currency(@expense_running_total) %></h4>

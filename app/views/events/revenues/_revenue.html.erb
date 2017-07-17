@@ -8,17 +8,23 @@
   </thead>
 
   <tbody>
+    <% @revenue_running_total = 0 %>
     <% if @event.revenues.any? %>
       <% @event.revenues.persisted.each do |revenue| %>
         <tr>
           <td><%= revenue.source %></td>
-          <td><%= revenue.amount %></td>
+          <td><%= number_to_currency(revenue.amount) %></td>
           <td><%= link_to "Remove Revenue", [@event, revenue], 
                     method: :delete, 
                     class: "btn btn-danger btn-sm",
                     data: { confirm: 'Are you sure?' } %></td>
+          <% @revenue_running_total = @revenue_running_total + revenue.amount %>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
+
+<br>
+
+<h4>Revenue Total: <%= number_to_currency(@revenue_running_total) %></h4>
