@@ -36,11 +36,12 @@ class Events::ExpensesController < ApplicationController
   def destroy
     @event = Event.find(params[:event_id])
     @expense = @event.expenses.find(params[:id])
+    title = @expense.source
     
     @expense.destroy
     
     respond_to do |format|
-      format.html { redirect_to event_path(@event.id), notice: 'Expense was successfully removed.' }
+      format.html { redirect_to event_path(@event.id), notice: "\"#{title}\" expense was successfully removed from #{@event.name.capitalize}." }
     end
     
   end
