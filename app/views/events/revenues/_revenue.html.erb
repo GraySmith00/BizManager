@@ -3,6 +3,7 @@
     <tr>
       <th>Source</th>
       <th>Amount</th>
+      <th>Edit</th>
       <th>Remove</th>
     </tr>
   </thead>
@@ -14,9 +15,11 @@
         <tr>
           <td><%= revenue.source %></td>
           <td><%= number_to_currency(revenue.amount) %></td>
+          <td><%= link_to "Edit Revenue", edit_event_revenue_path(@event, revenue),
+                    class: 'btn btn-sm btn-success' %></td>
           <td><%= link_to "Remove Revenue", [@event, revenue], 
                     method: :delete, 
-                    class: "btn btn-danger btn-sm",
+                    class: "btn btn-sm btn-danger",
                     data: { confirm: 'Are you sure?' } %></td>
           <% @revenue_running_total = @revenue_running_total + revenue.amount %>
         </tr>

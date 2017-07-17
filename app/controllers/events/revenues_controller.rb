@@ -14,20 +14,25 @@ class Events::RevenuesController < ApplicationController
     end
     redirect_to event_path(@event.id)
   end
+  
+  def edit
+    @event = Event.find(params[:event_id])
+    @revenue = @event.revenues.find(params[:id]) 
+  end
 
-  # def update
+  def update
+    @event = Event.find(params[:event_id])
+    @revenue = @event.revenues.find(params[:id])
+    title = @revenue.source
     
-  #   respond_to do |format|
-  #     if @revenue.update(revenue_params)
-  #       format.html { redirect_to @event, notice: 'Revenue was successfully updated.' }
-  #     else
-  #       format.html { render :edit }
-  #     end
-  #   end
-  # end
-
-  # DELETE /revenues/1
-  # DELETE /revenues/1.json
+    respond_to do |format|
+      if @revenue.update(revenue_params)
+        format.html { redirect_to @event, notice: "\"#{title}\" revenue was successfully updated." }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
   
   
   def destroy

@@ -17,18 +17,25 @@ class Events::ExpensesController < ApplicationController
     end
     redirect_to event_path(@event.id)
   end
+  
+  def edit
+    @event = Event.find(params[:event_id])
+    @expense = @event.expenses.find(params[:id])
+  end
 
   
-  # def update
+  def update
+    @event = Event.find(params[:event_id])
+    @expense = @event.expenses.find(params[:id])
     
-  #   respond_to do |format|
-  #     if @expense.update(expense_params)
-  #       format.html { redirect_to @event, notice: 'expense was successfully updated.' }
-  #     else
-  #       format.html { render :edit }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @expense.update(expense_params)
+        format.html { redirect_to @event, notice: 'expense was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
 
   
   

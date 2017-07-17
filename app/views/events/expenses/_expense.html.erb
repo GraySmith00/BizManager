@@ -4,6 +4,7 @@
     <tr>
       <th>Source</th>
       <th>Amount</th>
+      <th>Edit</th>
       <th>Remove</th>
     </tr>
   </thead>
@@ -15,6 +16,8 @@
       <tr>
         <td><%= expense.source %></td>
         <td><%= number_to_currency(expense.amount) %></td>
+        <td><%= link_to "Edit Expense", edit_event_expense_path(@event, expense), 
+                    class: 'btn btn-sm btn-success' %></td>
         <td><%= link_to "Remove Expense", [@event, expense], 
                     method: :delete, 
                     class: 'btn btn-danger btn-sm',
